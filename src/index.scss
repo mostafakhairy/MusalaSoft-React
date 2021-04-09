@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/bootstrap';
+@import 'react-notifications-component/dist/theme.css';
+a {
+  text-decoration: none;
+}
+.navbar-nav > a {
+  color: white;
+  padding: 0 1rem;
+  &:hover {
+    text-decoration: none;
+  }
+}
