@@ -3,7 +3,7 @@ import { AnimatedSwitch } from 'react-router-transition';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import NavbarMenu from '../NavbarMenu/NavbarMenu';
 import AppSpinner from '../shared/AppSpinner/AppSpinner';
-
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 const DeviceList = React.lazy(() => import('../device/DeviceList/DeviceList'));
 const DeviceAdd = React.lazy(() => import('../device/DeviceAdd/DeviceAdd'));
 const DeviceEdit = React.lazy(() => import('../device/DeviceEdit/DeviceEdit'));
@@ -39,9 +39,11 @@ export default function Layout() {
             atActive={{ opacity: 1 }}
             className="switch-wrapper"
           > */}
-          {routes.map((route) => (
-            <Route exact path={route.path} component={route.component} key={route.path}></Route>
-          ))}
+          <ErrorBoundary>
+            {routes.map((route) => (
+              <Route exact path={route.path} component={route.component} key={route.path}></Route>
+            ))}
+          </ErrorBoundary>
           {/* </AnimatedSwitch> */}
         </div>
       </Suspense>
