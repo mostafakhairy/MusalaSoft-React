@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import translation from '../../assets/localization/language';
 
 export default class ErrorBoundary extends Component {
   state = {

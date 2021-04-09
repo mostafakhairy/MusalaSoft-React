@@ -1,21 +1,25 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Table, Badge } from 'react-bootstrap';
-import ActionBtns from '../../shared/ActionBtns/ActionsBtns';
-import gatewayService from '../../../services/gateway.service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import Notification from '../../shared/Notification/Notification';
 import { useHistory } from 'react-router-dom';
+
+import gatewayService from '../../../services/gateway.service';
+import Notification from '../../shared/Notification/Notification';
+import AppSpinner from '../../shared/AppSpinner/AppSpinner';
+import ActionBtns from '../../shared/ActionBtns/ActionsBtns';
 
 export default function GatewayList() {
   const [gatewayListState, setGatewayListState] = useState([]);
+  const [loadingState, setLoadingState] = useState(true);
+
   const history = useHistory();
   function listGateway() {}
   useEffect(() => {
     async function getGateway() {
       const data = await gatewayService.get();
       setGatewayListState(data);
-      console.log(data);
+      setLoadingState(false);
     }
     getGateway();
   }, []);
@@ -29,6 +33,7 @@ export default function GatewayList() {
   }
   return (
     <Fragment>
+      {loadingState && <AppSpinner display={'Absolute'} position={'Center'} />}
       <NavLink className="btn btn-success my-2" to="/gateway/add">
         Add <FontAwesomeIcon icon="plus"></FontAwesomeIcon>
       </NavLink>

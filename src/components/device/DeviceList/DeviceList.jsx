@@ -7,15 +7,17 @@ import { useHistory } from 'react-router-dom';
 
 import Notification from '../../shared/Notification/Notification';
 import devicesService from '../../../services/device.service';
+import AppSpinner from '../../shared/AppSpinner/AppSpinner';
 
 export default function DeviceList() {
   const [deviceListState, setDeviceListState] = useState([]);
+  const [loadingState, setLoadingState] = useState(true);
   const history = useHistory();
   useEffect(() => {
     async function getDevice() {
       const data = await devicesService.get();
       setDeviceListState(data);
-      console.log(data);
+      setLoadingState(false);
     }
     getDevice();
   }, []);
@@ -30,6 +32,7 @@ export default function DeviceList() {
   }
   return (
     <Fragment>
+      {loadingState && <AppSpinner display={'Absolute'} position={'Center'} />}
       <NavLink className="btn btn-success my-2" to="/devices/add">
         Add <FontAwesomeIcon icon="plus"></FontAwesomeIcon>
       </NavLink>
