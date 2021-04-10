@@ -29,7 +29,7 @@ export default function GatewayList() {
     Notification({ message: 'Gateway Removed', title: 'Success', type: 'success' });
   }
   function onEdit(id) {
-    history.push(`gateway/edit/${id}`);
+    history.push(`/gateway/edit/${id}`);
   }
   return (
     <Fragment>
