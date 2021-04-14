@@ -13,18 +13,19 @@ export default function DeviceList() {
   const [deviceListState, setDeviceListState] = useState([]);
   const [loadingState, setLoadingState] = useState(true);
   const history = useHistory();
+
+  async function getDevice() {
+    const data = await devicesService.get();
+    setDeviceListState(data);
+    setLoadingState(false);
+  }
   useEffect(() => {
-    async function getDevice() {
-      const data = await devicesService.get();
-      setDeviceListState(data);
-      setLoadingState(false);
-    }
     getDevice();
   }, []);
 
   async function onRemove(id) {
     const res = await devicesService.remove(id);
-    setDeviceListState(deviceListState.filter((c) => c.id != id));
+    setDeviceListState(deviceListState.filter((c) => c.uid != id));
     Notification({ message: 'Device Removed', title: 'Success', type: 'success' });
   }
   function onEdit(id) {
