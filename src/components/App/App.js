@@ -9,7 +9,6 @@ library.add(fab, fas);
 function App() {
   return (
     <Fragment>
-      <p>Hello</p>
       <BrowserRouter>
         <ReactNotification />
         <Layout />
