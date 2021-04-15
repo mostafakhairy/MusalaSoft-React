@@ -18,14 +18,14 @@ const routes = [
     component: DeviceList,
   },
   { path: '/devices/add', name: 'Add', component: DeviceAdd, hidden: true },
-  { path: '/devices/edit/:id', name: 'Edit', component: DeviceEdit, hidden: true },
+  { path: '/devices/:id', name: 'Edit', component: DeviceEdit, hidden: true },
   {
     path: '/gateway',
     name: 'Gateway',
     component: GatewayList,
   },
   { path: '/gateway/add', name: 'Add', component: GatewayAdd, hidden: true },
-  { path: '/gateway/edit/:id', name: 'Edit', component: GatewayEdit, hidden: true },
+  { path: '/gateway/:id', name: 'Edit', component: GatewayEdit, hidden: true },
 ];
 export default function Layout() {
   return (

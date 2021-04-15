@@ -29,7 +29,7 @@ export default function DeviceList() {
     Notification({ message: 'Device Removed', title: 'Success', type: 'success' });
   }
   function onEdit(id) {
-    history.push(`/devices/edit/${id}`);
+    history.push(`/edit/${id}`);
   }
   return (
     <Fragment>
